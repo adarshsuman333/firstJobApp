@@ -3,6 +3,8 @@ package com.example.firstJobApp.controller;
 import com.example.firstJobApp.entity.Job;
 import com.example.firstJobApp.services.JobService;
 import com.example.firstJobApp.services.JobServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -39,25 +41,25 @@ public class JobController {
     }
 
     @GetMapping("/jobs")
-    public List<Job> findAll(){
+    public ResponseEntity<List<Job>>  findAll(){
 //        return jobs;
-        return jobService.findAllJobs();
+        return ResponseEntity.ok(jobService.findAllJobs());
     }
 
     @PostMapping("/jobs")
-    public String createJob(@RequestBody Job job){
+    public ResponseEntity<String>  createJob(@RequestBody Job job){
 //        jobs.add(job);
         jobService.createJob(job);
-        return "Job Added Successfully";
+        return new ResponseEntity<>("Job Added Successfully", HttpStatus.CREATED);
     }
 
     @GetMapping("/jobs/{id}")
-    public Job getJobById(@PathVariable Long id){
+    public ResponseEntity<Job> getJobById(@PathVariable Long id){
         Job job = jobService.getJobById(id);
         if(job!=null){
-            return job;
+            return new ResponseEntity<>(job, HttpStatus.OK);
         }
-        return new Job(18, "Test Engineer", "Test Engineer required", 18000, 25000, "Gurugram");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
