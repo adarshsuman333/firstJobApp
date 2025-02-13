@@ -3,6 +3,7 @@ package com.example.firstJobApp.controller;
 import com.example.firstJobApp.entity.Job;
 import com.example.firstJobApp.services.JobService;
 import com.example.firstJobApp.services.JobServiceImpl;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +68,15 @@ public class JobController {
         boolean deleted = jobService.deleteJobById(id);
         if (deleted){
             return new ResponseEntity<>("Job Deleted Successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/jobs/{id}")
+    public ResponseEntity<String> updateJobById(@PathVariable Long id, @RequestBody Job updatedJob){
+        boolean updated = jobService.updateJob(id, updatedJob);
+        if(updated){
+            return new ResponseEntity<>("Job updated successfully", HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
