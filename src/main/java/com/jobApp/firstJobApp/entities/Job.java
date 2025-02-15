@@ -2,7 +2,11 @@ package com.jobApp.firstJobApp.entities;
 
 import jakarta.persistence.*;
 
+@Entity
+//@Table(name="job")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String description;
@@ -10,6 +14,9 @@ public class Job {
     private int maxSalary;
     private String location;
 
+    public Job() {
+
+    }
 
     public Job(String description, long id, String location, int maxSalary, int minSalary, String title) {
         this.description = description;
