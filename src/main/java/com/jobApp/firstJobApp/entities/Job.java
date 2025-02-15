@@ -3,11 +3,16 @@ package com.jobApp.firstJobApp.entities;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name="job")
+@Table(name="first_job")
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Version
+    private Integer version; // This is needed for optimistic locking
+//    The @Version annotation ensures that Hibernate checks the version before updating the record, preventing concurrent modifications.
+
     private String title;
     private String description;
     private int minSalary;
