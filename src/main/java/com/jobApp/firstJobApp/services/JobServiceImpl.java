@@ -49,12 +49,21 @@ public class JobServiceImpl implements JobService{
 //            }
 //        }
 //        return false;
-        try {
+
+        if(jobRepository.existsById(id)){
             jobRepository.deleteById(id);
             return true;
-        }catch (Exception e){
+        }
+        else{
             return false;
         }
+
+//        try {
+//            jobRepository.deleteById(id);
+//            return true;
+//        }catch (Exception e){
+//            return false;
+//        }
     }
 
     @Override
@@ -68,6 +77,7 @@ public class JobServiceImpl implements JobService{
                 job.setLocation(updatedJob.getLocation());
                 job.setMinSalary(updatedJob.getMinSalary());
                 job.setMaxSalary(updatedJob.getMaxSalary());
+                jobRepository.save(job);
                 return true;
             }
 //        }

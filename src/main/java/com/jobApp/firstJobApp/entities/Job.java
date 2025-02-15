@@ -3,7 +3,7 @@ package com.jobApp.firstJobApp.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="first_job")
+//@Table(name="first_job")
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
