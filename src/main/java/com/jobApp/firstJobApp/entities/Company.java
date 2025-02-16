@@ -1,5 +1,6 @@
 package com.jobApp.firstJobApp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,7 +13,10 @@ public class Company {
     private String name;
     private String description;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+//    cascade = CascadeType.ALL: Propagates all operations, including REMOVE.
+//    orphanRemoval = true: Automatically deletes Job records if they're removed from the jobs list.
     private List<Job> jobs;
 
 //    @OneToMany

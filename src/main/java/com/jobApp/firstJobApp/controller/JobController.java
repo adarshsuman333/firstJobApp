@@ -1,5 +1,6 @@
 package com.jobApp.firstJobApp.controller;
 
+import com.jobApp.firstJobApp.entities.Company;
 import com.jobApp.firstJobApp.entities.Job;
 import com.jobApp.firstJobApp.services.JobService;
 import com.jobApp.firstJobApp.services.JobServiceImpl;
@@ -27,6 +28,7 @@ public class JobController {
     @PostMapping
     public ResponseEntity<String> createJob(@RequestBody Job job){
         jobService.createJob(job);
+//        Company company = job.getCompany();
         return new ResponseEntity<>("Job added successfully", HttpStatus.CREATED) ;
     }
 
