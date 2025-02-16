@@ -1,9 +1,7 @@
 package com.jobApp.firstJobApp.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 @Entity
 public class Review {
@@ -13,6 +11,10 @@ public class Review {
     private String title;
     private String description;
     private double rating;
+
+    @ManyToOne
+    @JsonIgnore
+    private Company company;
 
 
     public Review() {

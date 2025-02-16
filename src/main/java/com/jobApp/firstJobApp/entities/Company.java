@@ -19,8 +19,16 @@ public class Company {
 //    orphanRemoval = true: Automatically deletes Job records if they're removed from the jobs list.
     private List<Job> jobs;
 
-//    @OneToMany
-//    private List<Review> reviews;
+    @OneToMany(mappedBy = "company")
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Company() {
 
