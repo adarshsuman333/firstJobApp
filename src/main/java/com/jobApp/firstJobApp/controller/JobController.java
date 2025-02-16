@@ -38,7 +38,7 @@ public class JobController {
         if(job!=null)
             return new ResponseEntity<>(job, HttpStatus.OK);
 
-        return new ResponseEntity<>(job, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
